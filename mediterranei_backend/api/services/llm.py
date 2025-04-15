@@ -1,6 +1,14 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, AutoModelForSequenceClassification
 import torch
 
+model = None
+
+def load_model():
+    global model
+    if model is None:
+        model = LLMClassifier()
+    return model
+
 class LLMClassifier():
     def __init__(self): # Do not change the model unless you are very sure it works with the same prompt structure!!!
         torch.set_default_device("cuda")
